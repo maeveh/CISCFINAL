@@ -54,7 +54,9 @@ public class TestFinance {
 		System.out.println(RTMT.MonthlySavings());
 		
 		//assert equals to test 
-		assertEquals(554.12,RTMT.MonthlySavings(),0.01);
+		//, if I save $554.13 for the next 40 years at 7% interest, 
+		//I’ll be able to draw the difference between $10,000 and $2642 for the 20 years at 2% interest.
+		assertEquals(554.13,RTMT.MonthlySavings(),0.01);
 		
 		
 	}
