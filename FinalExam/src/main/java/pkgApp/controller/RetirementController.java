@@ -65,6 +65,13 @@ public class RetirementController implements Initializable {
 		// "\\d*?" - means any decimal number
 		// "\\d*(\\.\\d*)?" means any decimal, then optionally a period (.), then
 		// decmial
+		// Check out these pages (how to validate controls):
+		// https://stackoverflow.com/questions/30935279/javafx-input-validation-textfield
+		// https://stackoverflow.com/questions/40485521/javafx-textfield-validation-decimal-value?rq=1
+		// https://stackoverflow.com/questions/8381374/how-to-implement-a-numberfield-in-javafx-2-0
+		// There are some examples on how to validate / check format
+		
+		//VALIDATION 
 		hmTextFieldRegEx.put(txtYearsToWork, "\\d*?");
 		hmTextFieldRegEx.put(txtAnnualReturnWorking, "\\d*(\\.\\d*)?");
 		hmTextFieldRegEx.put(txtYearsRetired, "\\d*?");
@@ -73,12 +80,6 @@ public class RetirementController implements Initializable {
 		hmTextFieldRegEx.put(txtAnnualReturnRetired, "\\d*(\\.\\d*)?");
 		
 		
-		// Check out these pages (how to validate controls):
-		// https://stackoverflow.com/questions/30935279/javafx-input-validation-textfield
-		// https://stackoverflow.com/questions/40485521/javafx-textfield-validation-decimal-value?rq=1
-		// https://stackoverflow.com/questions/8381374/how-to-implement-a-numberfield-in-javafx-2-0
-		// There are some examples on how to validate / check format
-
 		Iterator it = hmTextFieldRegEx.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry pair = (Map.Entry) it.next();
@@ -140,7 +141,7 @@ public class RetirementController implements Initializable {
 		txtSaveEachMonth.setDisable(false);
 		txtWhatYouNeedToSave.setDisable(false);
 		
-		// TODO: Calculate txtWhatYouNeedToSave value...
+		// DONE: Calculate txtWhatYouNeedToSave value...
 		//
 		Retirement RTMT = new Retirement(
 			Integer.parseInt(txtYearsToWork.getText()),
