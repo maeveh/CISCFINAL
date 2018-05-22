@@ -31,6 +31,7 @@ public class TestFinance {
 		
 		//	I want to copmare a double with a double... Doubles are not precice... I have to give a rounding factor.
 		//	Note the third argument.  That says only compare the double values to the hundredth place.
+		
 		assertEquals(1454485.55,Math.abs(PV),0.01);
 		
 	}
@@ -38,6 +39,23 @@ public class TestFinance {
 	@Test
 	public void TestPMT() {
 
-		//TODO: Test PMT.  Make sure PMT works as expected.
+		// from test PV
+		int iYearsToWork = 40;
+		double dAnnualReturnWorking = 0.07;
+		int iYearsRetired = 20;
+		double dAnnualReturnRetired = 0.02;
+		double dRequiredIncome = 10000;
+		double dMonthlySSI = 2642;
+		
+		//DONE: Test PMT.  Make sure PMT works as expected.
+		Retirement RTMT = new Retirement(40, 0.07, 20, 0.02, 10000, 2642);
+
+		//print
+		System.out.println(RTMT.MonthlySavings());
+		
+		//assert equals to test 
+		assertEquals(554.12,RTMT.MonthlySavings(),0.01);
+		
+		
 	}
 }
