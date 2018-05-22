@@ -67,7 +67,12 @@ public class RetirementController implements Initializable {
 		// decmial
 		hmTextFieldRegEx.put(txtYearsToWork, "\\d*?");
 		hmTextFieldRegEx.put(txtAnnualReturnWorking, "\\d*(\\.\\d*)?");
-
+		hmTextFieldRegEx.put(txtYearsRetired, "\\d*?");
+		hmTextFieldRegEx.put(txtRequiredIncome, "\\d*?");
+		hmTextFieldRegEx.put(txtMonthlySSI, "\\d*?");
+		hmTextFieldRegEx.put(txtAnnualReturnRetired, "\\d*(\\.\\d*)?");
+		
+		
 		// Check out these pages (how to validate controls):
 		// https://stackoverflow.com/questions/30935279/javafx-input-validation-textfield
 		// https://stackoverflow.com/questions/40485521/javafx-textfield-validation-decimal-value?rq=1
@@ -97,39 +102,60 @@ public class RetirementController implements Initializable {
 		}
 
 		//
-		// TODO: Validate Working Annual Return %, accept only numbers and decimals
-		// TODO: Validate Years retired, accepted only decimals
-		// TODO: Validate Retired Annual Return %, accept only numbers and deciamls
-		// TODO: Validate Required Income, accept only decimals
-		// TODO: Validate Monthly SSI, accept only decimals
+		// DONE: Validate Working Annual Return %, accept only numbers and decimals
+		// DONE: Validate Years retired, accepted only decimals
+		// DONE: Validate Retired Annual Return %, accept only numbers and deciamls
+		// DONE: Validate Required Income, accept only decimals
+		// DONE: Validate Monthly SSI, accept only decimals
 	}
 
 	@FXML
 	public void btnClear(ActionEvent event) {
 		System.out.println("Clear pressed");
 
-		// disable read-only controls
+		// DONE disable read-only controls
 		txtSaveEachMonth.setDisable(true);
 		txtWhatYouNeedToSave.setDisable(true);
 
-		// Clear, enable txtYearsToWork
-		txtYearsToWork.clear();
-		txtYearsToWork.setDisable(false);
-
-		// TODO: Clear, enable the rest of the input controls. Hint! You already have a
+		txtSaveEachMonth.clear();
+		txtWhatYouNeedToSave.clear();
+		
+	
+		// DONE: Clear, enable the rest of the input controls. Hint! You already have a
 		// HashMap of all the input controls....!!!!
-	}
+		//map.entry to input (key and value) 
+		
+		Iterator it = hmTextFieldRegEx.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry) it.next();
+			TextField txtField = (TextField) pair.getKey();
+		// Clear, enable txtYearsToWork	- set false
+		txtField.clear();
+		txtField.setDisable(false);
 
 	@FXML
 	public void btnCalculate() {
 
 		System.out.println("calculating");
-
 		txtSaveEachMonth.setDisable(false);
 		txtWhatYouNeedToSave.setDisable(false);
-
+		
 		// TODO: Calculate txtWhatYouNeedToSave value...
-		// TODO: Then calculate txtSaveEachMonth, using amount from txtWhatYouNeedToSave
+		//
+		Retirement RTMT = new Retirement(
+			Integer.parseInt(txtYearsToWork.getText()),
+			Double.parseDouble(txtAnnualReturnWorking.getText()) / 100, 
+			// divding by 100 for return 
+			Integer.parseInt(txtYearsRetired.getText()), 
+			Double.parseDouble(txtAnnualReturnRetired.getText()) / 100,
+			// divide 100 fir return retire
+			Integer.parseInt(txtRequiredIncome.getText()), 
+			Integer.parseInt(txtMonthlySSI.getText())
+			);
 		// as input
+		// DONE: Then calculate txtSaveEachMonth, using amount from txtWhatYouNeedToSave
+		txtSaveEachMonth.setText(String.valueOf(RTMT.MonthlySavings()));
+		txtWhatYouNeedToSave.setText(String.valueOf(RTMT.TotalAmountToSave()));		
+		
 	}
 }
