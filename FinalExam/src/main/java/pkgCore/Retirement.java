@@ -25,8 +25,10 @@ public class Retirement {
 	public double MonthlySavings() {
 
 		//TODO: Calculate AmountToSave
+		// pv? double pv = PV(dAnnualReturnRetired)
 		// calculate the real pmt
-		double pmt = PMT(dAnnualReturnWorking / (double) 12, iYearsToWork * 12, 0, TotalAmountToSave(), false);
+		double pmt = PMT(dAnnualReturnWorking / 12, iYearsToWork * 12, 0, TotalAmountToSave(), false);
+		// return
 		return pmt;
 	}
 
