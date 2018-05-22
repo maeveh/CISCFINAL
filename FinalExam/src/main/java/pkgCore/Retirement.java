@@ -23,8 +23,9 @@ public class Retirement {
 	}
 
 	public double MonthlySavings() {
-
-		//TODO: Calculate AmountToSave
+		
+		// SAVED EACH MONTH - GREEN
+		//DONE: Calculate AmountToSave
 		// pv? double pv = PV(dAnnualReturnRetired)
 		// calculate the real pmt
 		double pmt = PMT(dAnnualReturnWorking / 12, iYearsToWork * 12, 0, TotalAmountToSave(), false);
@@ -34,10 +35,12 @@ public class Retirement {
 
 	public double TotalAmountToSave() {
 		
-		//TODO: Calculate the Total Amount Requried to save
+		//THIS IS IN GREEN
+		//DONE: Calculate the Total Amount Requried to save
 		// years = 12 annual - 1 year, income - monthly payment
 		double pv = PV(dAnnualReturnRetired / (double) 12 , iYearsRetired * 12, 
 				dRequiredIncome - dMonthlySSI, 0, false);
+		
 		//	Hint: Here's how to round a number: pv = Math.round(pv * 100.0) / 100.0;
 		return Math.round(pv * 100) / 100;
 	}
